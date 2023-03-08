@@ -1,12 +1,14 @@
 package com.example.demo.controller
 
 import com.example.demo.dto.AddPriceRequestDto
-import com.example.demo.dto.ProductDto
-import com.example.demo.entity.Product
-import com.example.demo.service.ProductService
+import com.example.demo.dto.PriceDto
+import com.example.demo.dto.UpdatePriceRequestDto
+import com.example.demo.entity.Price
+import com.example.demo.service.PriceService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -17,7 +19,7 @@ import javax.validation.Valid
 @RestController
 @RequestMapping
 class MusinsaController(
-    val productService: ProductService
+    val priceService: PriceService
 ) {
 
     /**
@@ -45,10 +47,10 @@ class MusinsaController(
     /**
      * 브랜드 상품 가격 추가
      */
-    @PostMapping("/price")
-    fun addPrice(@RequestBody @Valid addPriceDto: AddPriceRequestDto): ResponseEntity<Product> {
-        val productDto = ProductDto(null, addPriceDto.category, addPriceDto.price, addPriceDto.brand)
-        val newProductEntity = productService.addPrice(productDto)
+    @PostMapping("/prices")
+    fun addPrice(@RequestBody @Valid addPriceDto: AddPriceRequestDto): ResponseEntity<Price> {
+        val priceDto = PriceDto(null, addPriceDto.category, addPriceDto.price, addPriceDto.brand)
+        val newProductEntity = priceService.addPrice(priceDto)
         return ResponseEntity.status(HttpStatus.CREATED).body(newProductEntity)
     }
 
@@ -57,8 +59,8 @@ class MusinsaController(
     /**
      * 브랜드 상품 가격 업데이트
      */
-    fun updatePrice() {
-        TODO("not yet")
+    @PatchMapping("/prices/{priceId}")
+    fun updatePrice(@RequestBody @Valid updatePriceDto: UpdatePriceRequestDto) {
     }
 
     /**

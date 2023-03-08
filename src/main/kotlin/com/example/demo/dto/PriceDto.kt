@@ -1,6 +1,6 @@
 package com.example.demo.dto
 
-data class ProductDto(
+data class PriceDto(
     val id: Int?,
     val category: String,
     val price: Int,
