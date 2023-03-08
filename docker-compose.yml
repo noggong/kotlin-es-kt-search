@@ -1,0 +1,27 @@
+version: "3"
+services:
+  database:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: musinsa
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: 1234
+    volumes:
+      - ./db/data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    restart: always
+  application:
+    build: .
+    depends_on:
+      - database
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/musinsa
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1234
+      SPRING_PROFILES_ACTIVE: prod
+    ports:
+      - 8080:8080
+    restart: always
