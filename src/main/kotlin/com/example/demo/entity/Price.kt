@@ -8,6 +8,6 @@ class Price(
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Int?,
     val category: String,
-    val price: Int,
+    var price: Int,
     val brand: String,
     ) {}

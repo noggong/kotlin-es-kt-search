@@ -1,4 +1,4 @@
-package com.example.demo.exceptionhandler
+package com.example.demo.exception
 
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
@@ -29,6 +29,15 @@ class GlobalErrorHandler : ResponseEntityExceptionHandler() {
         logger.info("✅errors : $errors")
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors)
+    }
+
+    @ExceptionHandler(PriceNotFoundException::class)
+    fun handleInputRequestError(ex: PriceNotFoundException, request: WebRequest): ResponseEntity<Any> {
+        logger.info("Exception occurred: ${ex.message} on request: $request")
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            .body(
+                ex.message
+            )
     }
 
     @ExceptionHandler(Exception::class)
