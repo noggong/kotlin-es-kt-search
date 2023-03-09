@@ -5,7 +5,7 @@ import javax.persistence.*
 @Table(name="prices")
 class Price(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int?,
     val category: String,
     var price: Int,
