@@ -11,3 +11,7 @@ spring:
       ddl-auto: update
     generate-ddl: true
     show-sql: true
+
+elasticsearch:
+  host: localhost
+  port: 9200
