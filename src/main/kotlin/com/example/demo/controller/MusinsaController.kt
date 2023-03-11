@@ -4,8 +4,7 @@ import com.example.demo.dto.*
 import com.example.demo.document.Price
 import com.example.demo.exception.PriceNotFoundException
 import com.example.demo.service.PriceService
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
+import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
-import javax.validation.Valid
 
 @RestController
 @RequestMapping
@@ -71,51 +69,51 @@ class MusinsaController(
         )
     }
 
-    /**
-     * 브랜드 상품 가격 추가
-     */
-    @PostMapping("/prices")
-    fun addPrice(@RequestBody @Valid addPriceDto: AddPriceRequestDto): ResponseEntity<Price> {
-        val priceDto = PriceDto(null, addPriceDto.category, addPriceDto.price, addPriceDto.brand)
-        val newPriceEntity = priceService.addPrice(priceDto)
-        return ResponseEntity.status(HttpStatus.CREATED).body(newPriceEntity)
-    }
-
-    /**
-     * 브랜드 상품 가격 업데이트
-     */
-    @PatchMapping("/prices/{priceId}")
-    fun updatePrice(@PathVariable("priceId") priceId: String,
-        @RequestBody @Valid updatePriceDto: UpdatePriceRequestDto): ResponseEntity<Price> {
-        val existingPrice = priceService.getPrice(priceId)
-
-        return if (existingPrice.isPresent) {
-            existingPrice.get().let {
-                ResponseEntity
-                    .status(HttpStatus.ACCEPTED)
-                    .body(priceService.patchPrice(it, updatePriceDto.price))
-            }
-        } else {
-            throw PriceNotFoundException("존재 하지 않는 상품 가격 정보 입니다. (id: ${priceId})")
-        }
-    }
-
-    /**
-     * 브랜드 상품 가격 삭제
-     */
-    @DeleteMapping("/prices/{priceId}")
-    fun deletePrice(@PathVariable("priceId") priceId: String): ResponseEntity<DeletePriceResponseDto> {
-        val existingPrice = priceService.getPrice(priceId)
-
-        return if (existingPrice.isPresent) {
-            existingPrice.get().let {
-                priceService.delPrice(it)
-                ResponseEntity
-                    .status(HttpStatus.ACCEPTED)
-                    .body(DeletePriceResponseDto(priceId))
-            }
-        } else {
-            throw PriceNotFoundException("존재 하지 않는 상품 가격 정보 입니다. (id: ${priceId})")
-        }
-    }
+//    /**
+//     * 브랜드 상품 가격 추가
+//     */
+//    @PostMapping("/prices")
+//    fun addPrice(@RequestBody @Valid addPriceDto: AddPriceRequestDto): ResponseEntity<Price> {
+//        val priceDto = PriceDto(null, addPriceDto.category, addPriceDto.price, addPriceDto.brand)
+//        val newPriceEntity = priceService.addPrice(priceDto)
+//        return ResponseEntity.status(HttpStatus.CREATED).body(newPriceEntity)
+//    }
+//
+//    /**
+//     * 브랜드 상품 가격 업데이트
+//     */
+//    @PatchMapping("/prices/{priceId}")
+//    fun updatePrice(@PathVariable("priceId") priceId: String,
+//        @RequestBody @Valid updatePriceDto: UpdatePriceRequestDto): ResponseEntity<Price> {
+//        val existingPrice = priceService.getPrice(priceId)
+//
+//        return if (existingPrice.isPresent) {
+//            existingPrice.get().let {
+//                ResponseEntity
+//                    .status(HttpStatus.ACCEPTED)
+//                    .body(priceService.patchPrice(it, updatePriceDto.price))
+//            }
+//        } else {
+//            throw PriceNotFoundException("존재 하지 않는 상품 가격 정보 입니다. (id: ${priceId})")
+//        }
+//    }
+//
+//    /**
+//     * 브랜드 상품 가격 삭제
+//     */
+//    @DeleteMapping("/prices/{priceId}")
+//    fun deletePrice(@PathVariable("priceId") priceId: String): ResponseEntity<DeletePriceResponseDto> {
+//        val existingPrice = priceService.getPrice(priceId)
+//
+//        return if (existingPrice.isPresent) {
+//            existingPrice.get().let {
+//                priceService.delPrice(it)
+//                ResponseEntity
+//                    .status(HttpStatus.ACCEPTED)
+//                    .body(DeletePriceResponseDto(priceId))
+//            }
+//        } else {
+//            throw PriceNotFoundException("존재 하지 않는 상품 가격 정보 입니다. (id: ${priceId})")
+//        }
+//    }
 }

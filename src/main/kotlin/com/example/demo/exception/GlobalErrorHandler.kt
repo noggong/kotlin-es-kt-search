@@ -14,22 +14,6 @@ import kotlin.Exception
 @Component
 @ControllerAdvice
 class GlobalErrorHandler : ResponseEntityExceptionHandler() {
-    override fun handleMethodArgumentNotValid(
-        ex: MethodArgumentNotValidException,
-        headers: HttpHeaders,
-        status: HttpStatus,
-        request: WebRequest
-    ): ResponseEntity<Any> {
-        logger.error("😀MethodArugmentNotValidExpection : ${ex.message}", ex)
-
-        val errors  = ex.bindingResult.allErrors
-            .map { error -> error.defaultMessage!! }
-            .sorted()
-
-        logger.info("✅errors : $errors")
-
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors)
-    }
 
     @ExceptionHandler(PriceNotFoundException::class)
     fun handleInputRequestError(ex: PriceNotFoundException, request: WebRequest): ResponseEntity<Any> {

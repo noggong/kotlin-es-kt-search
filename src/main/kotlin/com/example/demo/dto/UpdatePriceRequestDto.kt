@@ -1,7 +1,6 @@
 package com.example.demo.dto
 
-import javax.validation.constraints.Min
-import javax.validation.constraints.NotNull
+import jakarta.validation.constraints.*
 
 data class UpdatePriceRequestDto(
     @get:NotNull(message = "Price must not be blank")
