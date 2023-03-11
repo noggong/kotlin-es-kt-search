@@ -17,6 +17,7 @@ class ElasticsearchConfig(
             .connectedTo(elasticsearchProperties.getHostAndPort())
             .build()
 
+
         return RestClients.create(clientConfiguration).rest()
     }
 }

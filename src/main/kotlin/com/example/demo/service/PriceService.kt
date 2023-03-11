@@ -1,15 +1,78 @@
 package com.example.demo.service
 
+import com.example.demo.document.ElasticClient
+import com.example.demo.document.Price
 import com.example.demo.dto.PriceDto
-import com.example.demo.entity.Price
-import com.example.demo.repository.PriceRepository
+import com.example.demo.repository.es.PriceESRepository
+import com.jillesvangurp.ktsearch.SearchClient
+import com.jillesvangurp.ktsearch.ids
+import com.jillesvangurp.ktsearch.search
+import kotlinx.coroutines.*
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations
 import org.springframework.stereotype.Service
 import java.util.*
 
+//    "aggs": {
+//        "result": {
+//            "terms": {
+//            "field": "category"
+//        },
+//            "aggs": {
+//            "lowest_price": {
+//            "top_hits": {
+//            "size": 1,
+//            "sort": [{"price": {"order": "asc"}}],
+//            "_source": {
+//            "includes": ["brand", "price"]
+//        }
+//        }
+//        }
+//        }
+//        }
+//    }
+
 @Service
 class PriceService (
-    val priceRepository: PriceRepository
+    val priceESRepository: PriceESRepository,
+    val esOperations: ElasticsearchOperations,
+//    val esClientConfig: ElasticsearchConfig
     ) {
+
+//    lateinit var esClient: RestHighLevelClient
+    init {
+//        esClient = esClientConfig.elasticsearchClient()
+    }
+
+
+    fun lowestPriceByCategory() {
+        runBlocking {
+            ElasticClient().client.search("prices").ids
+        }
+
+//        client.search("prices").ids
+
+
+//
+//        val aggByCategory = AggregationBuilders.terms("result").field("category")
+//        val aggLowestPrice = TopHitsAggregationBuilder("lowestPrice")
+//            .size(1)
+//            .sort("price", SortOrder.ASC)
+//
+//        val query = NativeSearchQueryBuilder()
+//            .withAggregations(aggByCategory)
+//            .withPageable(PageRequest.of(0, 1000))
+//            .build()
+//
+//        val searchHits = esOperations.search(query, Price::class.java)
+//
+//        println(searchHits)
+//        val result = searchHits.aggregations
+//
+
+//        for(hit in searchHits) {
+//            println(hit)
+//        }
+    }
 
     /**
      * 가격을 추가한다.
@@ -17,19 +80,19 @@ class PriceService (
      * @return Price
      */
     fun addPrice(priceDto: PriceDto): Price {
-        val priceEntity = priceDto.let {
-            Price(null, priceDto.category, priceDto.price, priceDto.brand)
+        val priceDoc = priceDto.let {
+            Price(null, priceDto.brand, priceDto.category, priceDto.price)
         }
-        priceRepository.save(priceEntity)
-        return priceEntity
+        priceESRepository.save(priceDoc)
+        return priceDoc
     }
 
     /**
      * id 에 해당하는 price 정보를 가져온다.
-     * @param priceId int price 정보의 id
+     * @param priceId String price 정보의 id
      * @return Optional<price>
      */
-    fun getPrice(priceId: Int): Optional<Price> = priceRepository.findById(priceId)
+    fun getPrice(priceId: String): Optional<Price> = priceESRepository.findById(priceId)
 
     /**
      * 특정 가격을 변경한다.
@@ -39,7 +102,7 @@ class PriceService (
      */
     fun patchPrice(price: Price, priceToChange: Int): Price {
         price.price = priceToChange
-        return priceRepository.save(price)
+        return priceESRepository.save(price)
     }
 
     /**
@@ -47,6 +110,6 @@ class PriceService (
      * @param price Price 기존에 존재 하던 삭제될 가격 entity
      */
     fun delPrice(price: Price) {
-        priceRepository.delete(price)
+        priceESRepository.delete(price)
     }
 }

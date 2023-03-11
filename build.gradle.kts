@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 plugins {
-	id("org.springframework.boot") version "2.6.3"
+	id("org.springframework.boot") version "3.0.4"
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 	kotlin("jvm") version "1.6.0"
 	kotlin("plugin.spring") version "1.6.0"
@@ -16,6 +16,11 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
 	mavenCentral()
+	maven("https://maven.tryformation.com/releases") {
+		content {
+			includeGroup("com.jillesvangurp")
+		}
+	}
 }
 
 dependencies {
@@ -50,7 +55,12 @@ dependencies {
 
 	implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+	implementation("com.jillesvangurp:search-client:2.0.0-RC-8")
 
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.4")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.6.4")
+	implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21")
 
 }
 
