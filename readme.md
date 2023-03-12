@@ -4,14 +4,11 @@
 - ([kt-search](https://github.com/jillesvangurp/kt-search/)) 바로가기
 
 ## Getting started
-### docker
-- es container
-- kibana container
-- spring boot container
-- prices index mapping
-- prices bulk indexing
 ```bash
-docker-compose up -d
+docker compose -f ./es-docker/docker-compose.yml up -d
+sh ./es-docker/es.sh
+gradle build
+java -jar build/libs/demo-0.0.1-SNAPSHOT.jar
 ```
 
 ## 요구 사항
