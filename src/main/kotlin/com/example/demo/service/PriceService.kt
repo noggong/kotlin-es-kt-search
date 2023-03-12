@@ -2,6 +2,7 @@ package com.example.demo.service
 
 import com.example.demo.document.Price
 import com.example.demo.dto.*
+import com.example.demo.exception.PriceNotFoundException
 import com.example.demo.repository.PriceRepository
 import org.springframework.stereotype.Service
 
@@ -14,6 +15,11 @@ class PriceService(
      */
     fun lowestPriceByCategory(): LowestPriceByCategoryDto {
         val esResult = priceRepository.lowestPriceByCategory()
+
+        if (esResult.lowestPrice.buckets.isEmpty()) {
+            throw PriceNotFoundException("현재 상품이 존재 하지 않습니다.")
+        }
+
         val prices = esResult.lowestPrice.buckets.map {
             PriceIdless(
                 it.top.hits.hits[0]._source.category,
@@ -29,6 +35,10 @@ class PriceService(
      */
     fun lowestPriceByBrand(): LowestPriceByBrandDto {
         val lowestOfSumPrices = priceRepository.lowestPriceByBrand()
+
+        if (lowestOfSumPrices.pricePerBrand.buckets.isEmpty()) {
+            throw PriceNotFoundException("현재 상품이 존재 하지 않습니다.")
+        }
         val lowestPriceInfo = lowestOfSumPrices.pricePerBrand.buckets.reduce { acc: CategoryAndStats, cur: CategoryAndStats ->
             if (acc.bucketStats.sum > cur.bucketStats.sum) cur else acc
         }
@@ -41,6 +51,11 @@ class PriceService(
      */
     fun priceByCategory(category: String): PriceByCategoryDto  {
         val lowestAndHighestPrice = priceRepository.priceByCategory(category)
+
+        if (lowestAndHighestPrice.highestPrice.hits.hits.isEmpty()) {
+            throw PriceNotFoundException("현재 상품이 존재 하지 않습니다.")
+        }
+
         val highest = lowestAndHighestPrice.highestPrice.hits.hits[0]._source
         val lowest = lowestAndHighestPrice.lowestPrice.hits.hits[0]._source
 
