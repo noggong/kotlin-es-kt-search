@@ -1,0 +1,144 @@
+{ "create" : { "_index": "prices"}}
+{ "brand": "A", "category": "상의", "price": 11200}
+{ "create" : { "_index": "prices"}}
+{ "brand": "A", "category": "아우터", "price": 5500}
+{ "create" : { "_index": "pricescd ~"}}
+{ "brand": "A", "category": "바지", "price": 4200}
+{ "create" : { "_index": "prices"}}
+{ "brand": "A", "category": "스니커즈", "price": 9000}
+{ "create" : { "_index": "prices"}}
+{ "brand": "A", "category": "가방", "price": 2000}
+{ "create" : { "_index": "prices"}}
+{ "brand": "A", "category": "모자", "price": 1700}
+{ "create" : { "_index": "prices"}}
+{ "brand": "A", "category": "양말", "price": 1800}
+{ "create" : { "_index": "prices"}}
+{ "brand": "A", "category": "엑세서리", "price": 2300}
+{ "create" : { "_index": "prices"}}
+{ "brand": "B", "category": "상의", "price": 10500}
+{ "create" : { "_index": "prices"}}
+{ "brand": "B", "category": "아우터", "price": 5900}
+{ "create" : { "_index": "prices"}}
+{ "brand": "B", "category": "바지", "price": 3800}
+{ "create" : { "_index": "prices"}}
+{ "brand": "B", "category": "스니커즈", "price": 9100}
+{ "create" : { "_index": "prices"}}
+{ "brand": "B", "category": "가방", "price": 2100}
+{ "create" : { "_index": "prices"}}
+{ "brand": "B", "category": "모자", "price": 2000}
+{ "create" : { "_index": "prices"}}
+{ "brand": "B", "category": "양말", "price": 2000}
+{ "create" : { "_index": "prices"}}
+{ "brand": "B", "category": "엑세서리", "price": 2200}
+{ "create" : { "_index": "prices"}}
+{ "brand": "C", "category": "상의", "price": 10000}
+{ "create" : { "_index": "prices"}}
+{ "brand": "C", "category": "아우터", "price": 6200}
+{ "create" : { "_index": "prices"}}
+{ "brand": "C", "category": "바지", "price": 3300}
+{ "create" : { "_index": "prices"}}
+{ "brand": "C", "category": "스니커즈", "price": 9200}
+{ "create" : { "_index": "prices"}}
+{ "brand": "C", "category": "가방", "price": 2200}
+{ "create" : { "_index": "prices"}}
+{ "brand": "C", "category": "모자", "price": 1900}
+{ "create" : { "_index": "prices"}}
+{ "brand": "C", "category": "양말", "price": 2200}
+{ "create" : { "_index": "prices"}}
+{ "brand": "C", "category": "엑세서리", "price": 2100}
+{ "create" : { "_index": "prices"}}
+{ "brand": "D", "category": "상의", "price": 10100}
+{ "create" : { "_index": "prices"}}
+{ "brand": "D", "category": "아우터", "price": 5100}
+{ "create" : { "_index": "prices"}}
+{ "brand": "D", "category": "바지", "price": 3000}
+{ "create" : { "_index": "prices"}}
+{ "brand": "D", "category": "스니커즈", "price": 9500}
+{ "create" : { "_index": "prices"}}
+{ "brand": "D", "category": "가방", "price": 2500}
+{ "create" : { "_index": "prices"}}
+{ "brand": "D", "category": "모자", "price": 1500}
+{ "create" : { "_index": "prices"}}
+{ "brand": "D", "category": "양말", "price": 2400}
+{ "create" : { "_index": "prices"}}
+{ "brand": "D", "category": "엑세서리", "price": 2000}
+{ "create" : { "_index": "prices"}}
+{ "brand": "E", "category": "상의", "price": 10700}
+{ "create" : { "_index": "prices"}}
+{ "brand": "E", "category": "아우터", "price": 5000}
+{ "create" : { "_index": "prices"}}
+{ "brand": "E", "category": "바지", "price": 3800}
+{ "create" : { "_index": "prices"}}
+{ "brand": "E", "category": "스니커즈", "price": 9900}
+{ "create" : { "_index": "prices"}}
+{ "brand": "E", "category": "가방", "price": 2300}
+{ "create" : { "_index": "prices"}}
+{ "brand": "E", "category": "모자", "price": 1800}
+{ "create" : { "_index": "prices"}}
+{ "brand": "E", "category": "양말", "price": 2100}
+{ "create" : { "_index": "prices"}}
+{ "brand": "E", "category": "엑세서리", "price": 2100}
+{ "create" : { "_index": "prices"}}
+{ "brand": "F", "category": "상의", "price": 11200}
+{ "create" : { "_index": "prices"}}
+{ "brand": "F", "category": "아우터", "price": 7200}
+{ "create" : { "_index": "prices"}}
+{ "brand": "F", "category": "바지", "price": 4000}
+{ "create" : { "_index": "prices"}}
+{ "brand": "F", "category": "스니커즈", "price": 9300}
+{ "create" : { "_index": "prices"}}
+{ "brand": "F", "category": "가방", "price": 2100}
+{ "create" : { "_index": "prices"}}
+{ "brand": "F", "category": "모자", "price": 1600}
+{ "create" : { "_index": "prices"}}
+{ "brand": "F", "category": "양말", "price": 2300}
+{ "create" : { "_index": "prices"}}
+{ "brand": "F", "category": "엑세서리", "price": 1900}
+{ "create" : { "_index": "prices"}}
+{ "brand": "G", "category": "상의", "price": 10500}
+{ "create" : { "_index": "prices"}}
+{ "brand": "G", "category": "아우터", "price": 5800}
+{ "create" : { "_index": "prices"}}
+{ "brand": "G", "category": "바지", "price": 3900}
+{ "create" : { "_index": "prices"}}
+{ "brand": "G", "category": "스니커즈", "price": 9000}
+{ "create" : { "_index": "prices"}}
+{ "brand": "G", "category": "가방", "price": 2200}
+{ "create" : { "_index": "prices"}}
+{ "brand": "G", "category": "모자", "price": 1700}
+{ "create" : { "_index": "prices"}}
+{ "brand": "G", "category": "양말", "price": 2100}
+{ "create" : { "_index": "prices"}}
+{ "brand": "G", "category": "엑세서리", "price": 2000}
+{ "create" : { "_index": "prices"}}
+{ "brand": "H", "category": "상의", "price": 10800}
+{ "create" : { "_index": "prices"}}
+{ "brand": "H", "category": "아우터", "price": 6300}
+{ "create" : { "_index": "prices"}}
+{ "brand": "H", "category": "바지", "price": 3100}
+{ "create" : { "_index": "prices"}}
+{ "brand": "H", "category": "스니커즈", "price": 9700}
+{ "create" : { "_index": "prices"}}
+{ "brand": "H", "category": "가방", "price": 2100}
+{ "create" : { "_index": "prices"}}
+{ "brand": "H", "category": "모자", "price": 1600}
+{ "create" : { "_index": "prices"}}
+{ "brand": "H", "category": "양말", "price": 2000}
+{ "create" : { "_index": "prices"}}
+{ "brand": "H", "category": "엑세서리", "price": 2000}
+{ "create" : { "_index": "prices"}}
+{ "brand": "I", "category": "상의", "price": 11400}
+{ "create" : { "_index": "prices"}}
+{ "brand": "I", "category": "아우터", "price": 6700}
+{ "create" : { "_index": "prices"}}
+{ "brand": "I", "category": "바지", "price": 3200}
+{ "create" : { "_index": "prices"}}
+{ "brand": "I", "category": "스니커즈", "price": 9500}
+{ "create" : { "_index": "prices"}}
+{ "brand": "I", "category": "가방", "price": 2400}
+{ "create" : { "_index": "prices"}}
+{ "brand": "I", "category": "모자", "price": 1700}
+{ "create" : { "_index": "prices"}}
+{ "brand": "I", "category": "양말", "price": 1700}
+{ "create" : { "_index": "prices"}}
+{ "brand": "I", "category": "엑세서리", "price": 2400}
