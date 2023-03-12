@@ -42,10 +42,10 @@ data class CategoryPriceAgg (
 )
 
 data class BrandPriceAgg (
-    val pricePerBrand: LowestPriceAgg<Category>,
+    val pricePerBrand: LowestPriceAgg<PriceCategoryTerms>,
 )
 
-data class Category (
+data class PriceCategoryTerms (
     val key: String,
     val bucketStats: BucketStats
 )

@@ -1,6 +1,6 @@
 package com.example.demo.service
 
-import com.example.demo.document.CategoryAndStats
+import com.example.demo.document.PriceCategoryTerms
 import com.example.demo.document.Price
 import com.example.demo.dto.*
 import com.example.demo.exception.PriceNotFoundException
@@ -40,7 +40,7 @@ class PriceService(
         if (lowestOfSumPrices.pricePerBrand.buckets.isEmpty()) {
             throw PriceNotFoundException("현재 상품이 존재 하지 않습니다.")
         }
-        val lowestPriceInfo = lowestOfSumPrices.pricePerBrand.buckets.reduce { acc: CategoryAndStats, cur: CategoryAndStats ->
+        val lowestPriceInfo = lowestOfSumPrices.pricePerBrand.buckets.reduce { acc: PriceCategoryTerms, cur: PriceCategoryTerms ->
             if (acc.bucketStats.sum > cur.bucketStats.sum) cur else acc
         }
 
