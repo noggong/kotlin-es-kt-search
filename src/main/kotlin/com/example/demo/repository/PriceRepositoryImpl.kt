@@ -2,9 +2,9 @@ package com.example.demo.repository
 
 import com.example.demo.document.ElasticClient
 import com.example.demo.document.Price
-import com.example.demo.dto.LowestPriceByBrandESDto
-import com.example.demo.dto.LowestPriceESDto
-import com.example.demo.dto.PriceByCategoryESDto
+import com.example.demo.document.BrandPriceAgg
+import com.example.demo.document.LowestPriceAgg
+import com.example.demo.document.CategoryPriceAgg
 import com.jillesvangurp.jsondsl.JsonDsl
 import com.jillesvangurp.ktsearch.*
 import com.jillesvangurp.searchdsls.querydsl.*
@@ -35,7 +35,7 @@ class PriceRepositoryImpl: PriceRepository {
         }
     }
 
-    override fun lowestPriceByCategory(): LowestPriceESDto {
+    override fun lowestPriceByCategory(): LowestPriceAgg {
         val results = runBlocking {
             ElasticClient.client.search(ElasticClient.INDEX_NAME) {
                 resultSize = 0
@@ -54,10 +54,10 @@ class PriceRepositoryImpl: PriceRepository {
             }
         }
 
-        return Gson().fromJson(results.aggregations?.toString()!!, LowestPriceESDto::class.java)
+        return Gson().fromJson(results.aggregations?.toString()!!, LowestPriceAgg::class.java)
     }
 
-    override fun lowestPriceByBrand(): LowestPriceByBrandESDto {
+    override fun lowestPriceByBrand(): BrandPriceAgg {
 
         val results = runBlocking {
             ElasticClient.client.search(ElasticClient.INDEX_NAME) {
@@ -74,11 +74,11 @@ class PriceRepositoryImpl: PriceRepository {
                 }
             }
         }
-        return Gson().fromJson(results.aggregations?.toString()!!, LowestPriceByBrandESDto::class.java)
+        return Gson().fromJson(results.aggregations?.toString()!!, BrandPriceAgg::class.java)
 
     }
 
-    override fun priceByCategory(category: String): PriceByCategoryESDto {
+    override fun priceByCategory(category: String): CategoryPriceAgg {
         val result = runBlocking {
             ElasticClient.client.search(ElasticClient.INDEX_NAME) {
                 resultSize = 0
@@ -99,7 +99,7 @@ class PriceRepositoryImpl: PriceRepository {
             }
         }
 
-        return Gson().fromJson(result.aggregations?.toString()!!, PriceByCategoryESDto::class.java)
+        return Gson().fromJson(result.aggregations?.toString()!!, CategoryPriceAgg::class.java)
     }
 
     override fun save(price: Price): Price {

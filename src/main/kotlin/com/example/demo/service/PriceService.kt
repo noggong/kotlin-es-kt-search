@@ -1,5 +1,6 @@
 package com.example.demo.service
 
+import com.example.demo.document.CategoryAndStats
 import com.example.demo.document.Price
 import com.example.demo.dto.*
 import com.example.demo.exception.PriceNotFoundException

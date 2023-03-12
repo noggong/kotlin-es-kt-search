@@ -1,13 +1,13 @@
 package com.example.demo.repository
 
 import com.example.demo.document.Price
-import com.example.demo.dto.LowestPriceByBrandESDto
-import com.example.demo.dto.LowestPriceESDto
-import com.example.demo.dto.PriceByCategoryESDto
+import com.example.demo.document.LowestPriceByBrandESDto
+import com.example.demo.document.LowestPriceTerms
+import com.example.demo.document.PriceByCategoryESDto
 import java.util.Optional
 
 interface PriceRepository {
-    fun lowestPriceByCategory(): LowestPriceESDto
+    fun lowestPriceByCategory(): LowestPriceTerms
     fun lowestPriceByBrand(): LowestPriceByBrandESDto
     fun priceByCategory(category: String): PriceByCategoryESDto
     fun save(price: Price): Price
