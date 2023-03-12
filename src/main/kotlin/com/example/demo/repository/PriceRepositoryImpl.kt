@@ -5,14 +5,11 @@ import com.example.demo.document.Price
 import com.example.demo.document.BrandPriceAgg
 import com.example.demo.document.LowestPriceTerms
 import com.example.demo.document.CategoryPriceAgg
-import com.jillesvangurp.jsondsl.JsonDsl
 import com.jillesvangurp.ktsearch.*
 import com.jillesvangurp.searchdsls.querydsl.*
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.kotlin.com.google.gson.Gson
 import org.springframework.stereotype.Component
-import kotlin.reflect.KProperty
-
 
 @Component
 class PriceRepositoryImpl: PriceRepository {
