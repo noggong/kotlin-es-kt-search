@@ -1,5 +1,5 @@
 package com.example.demo.dto
 
-data class DeletePriceResponseDto(
+data class DeletePriceDto(
     val deletedId: String,
 ) {}

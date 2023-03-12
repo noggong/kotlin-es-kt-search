@@ -3,19 +3,19 @@ package com.example.demo.dto
 data class PriceIdless (
     val category: String,
     val brand: String,
-    val price: Int){}
+    val price: Int)
 
-data class LowestPriceByCategoryResponseDto(
-    val price: List<PriceIdless>,
+data class LowestPriceByCategoryDto(
+    val prices: List<PriceIdless>,
     val total: Int
 )
 
-data class LowestPriceByBrandResponseDto(
+data class LowestPriceByBrandDto(
     val brand: String,
     val total: Int,
 )
 
-data class PriceByCategoryResponseDto(
+data class PriceByCategoryDto(
     val highest: PriceIdless,
     val lowest: PriceIdless,
 )

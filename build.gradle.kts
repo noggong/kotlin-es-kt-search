@@ -6,7 +6,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 	kotlin("jvm") version "1.6.0"
 	kotlin("plugin.spring") version "1.6.0"
-	//id("org.jetbrains.kotlin.plugin.spring") version "1.6.0"
+	kotlin("plugin.serialization").version("1.6.21")
 	kotlin("plugin.jpa") version "1.6.0"
 }
 
@@ -60,7 +60,6 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.4")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.6.4")
 	implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21")
-
 }
 
 tasks.withType<KotlinCompile> {
