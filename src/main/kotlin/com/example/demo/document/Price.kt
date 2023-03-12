@@ -18,22 +18,4 @@ class ElasticClient() {
         val INDEX_NAME = "prices"
         val client = SearchClient(KtorRestClient("127.0.0.1", 9200))
     }
-
-
-//    fun indexDocuments(documents: List<Price>) {
-//        documents.chunked(1000).forEach {
-//            runBlocking {
-//                client.bulk {
-//                    it.forEach { esDocument ->
-//                        index(
-//                            source = DEFAULT_JSON.encodeToString(Price.ser, esDocument),
-//                            index = "prices",
-//                            id = esDocument.id
-//                        )
-//                    }
-//                }
-//            }
-//        }
-//    }
-
 }
