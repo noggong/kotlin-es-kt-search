@@ -54,8 +54,6 @@ services:
         hard: -1
     volumes:
       - data03:/usr/share/elasticsearch/data
-    networks:
-      - elastic
   kibana:
     image: docker.elastic.co/kibana/kibana:7.16.1
     container_name: kibana
@@ -69,13 +67,15 @@ services:
       - elastic
   application:
     build: .
-    platform: linux/amd64
     depends_on:
       - es01
+      - kibana
     environment:
       SPRING_PROFILES_ACTIVE: dev
     ports:
       - 8080:8080
+    networks:
+      - elastic
     restart: always
 volumes:
   data01:

@@ -17,7 +17,7 @@ import kotlin.Exception
 class GlobalErrorHandler : ResponseEntityExceptionHandler() {
 
     @ExceptionHandler(PriceNotFoundException::class)
-    fun handleInputRequestError(ex: PriceNotFoundException, request: WebRequest): ResponseEntity<ErrorResponseDto> {
+    fun handlePriceRequestError(ex: PriceNotFoundException, request: WebRequest): ResponseEntity<ErrorResponseDto> {
         logger.info("Exception occurred: ${ex.message} on request: $request")
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
             .body(ErrorResponseDto(ex.message ?: "현재 상품에 문제가 생겼습니다. 빠르게 해결하겠습니다."))

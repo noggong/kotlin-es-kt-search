@@ -3,7 +3,7 @@ COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle build
 
-FROM openjdk:17-alpine
+FROM openjdk:17-jdk-slim
 WORKDIR /app
 COPY --from=build /home/gradle/src/build/libs/demo-0.0.1-SNAPSHOT.jar /app/
 
