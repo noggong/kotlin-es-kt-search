@@ -34,12 +34,9 @@ class MusinsaController(
      * 한 브랜드에서 모든 카테고리의 상품을 한꺼번에 구매할 경우 최저가 및 브랜드 조회 API
      */
     @GetMapping("lowest-price/by/brand")
-    fun lowestPriceByBrand(): ResponseEntity<LowestPriceByBrandDto> {
-        priceService.lowestPriceByBrand()
-        return ResponseEntity.ok().body(
-            LowestPriceByBrandDto("D", 36100)
-        )
-    }
+    fun lowestPriceByBrand(): ResponseEntity<LowestPriceByBrandDto> = ResponseEntity
+        .ok()
+        .body(priceService.lowestPriceByBrand())
 
     /**
      * 각 카테고리 이름으로 최소, 최대 가격 조회 API

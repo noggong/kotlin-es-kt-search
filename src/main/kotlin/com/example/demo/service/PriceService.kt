@@ -1,10 +1,7 @@
 package com.example.demo.service
 
 import com.example.demo.document.Price
-import com.example.demo.dto.LowestPriceByCategoryDto
-import com.example.demo.dto.PriceByCategoryDto
-import com.example.demo.dto.PriceDto
-import com.example.demo.dto.PriceIdless
+import com.example.demo.dto.*
 import com.example.demo.repository.PriceRepository
 import org.springframework.stereotype.Service
 
@@ -12,6 +9,9 @@ import org.springframework.stereotype.Service
 class PriceService(
     private val priceRepository: PriceRepository) {
 
+    /**
+     * 카테고리별 최저가와 최저가 브랜드 가져오기
+     */
     fun lowestPriceByCategory(): LowestPriceByCategoryDto {
         val esResult = priceRepository.lowestPriceByCategory()
         val prices = esResult.lowestPrice.buckets.map {
@@ -24,10 +24,21 @@ class PriceService(
         return LowestPriceByCategoryDto(prices, esResult.bucketStats.sum)
     }
 
-    fun lowestPriceByBrand() {
-        priceRepository.lowestPriceByBrand()
+    /**
+     * 브랜드별 모든 카테고리의 최저가 상품가격을 합친 가격 중 최저가 가져오기
+     */
+    fun lowestPriceByBrand(): LowestPriceByBrandDto {
+        val lowestOfSumPrices = priceRepository.lowestPriceByBrand()
+        val lowestPriceInfo = lowestOfSumPrices.pricePerBrand.buckets.reduce { acc: CategoryAndStats, cur: CategoryAndStats ->
+            if (acc.bucketStats.sum > cur.bucketStats.sum) cur else acc
+        }
+
+        return LowestPriceByBrandDto(lowestPriceInfo.key, lowestPriceInfo.bucketStats.sum)
     }
 
+    /**
+     * 특정 카테고리의 최고가, 최저가 와 브랜드 가져오기
+     */
     fun priceByCategory(category: String): PriceByCategoryDto  {
         val lowestAndHighestPrice = priceRepository.priceByCategory(category)
         val highest = lowestAndHighestPrice.highestPrice.hits.hits[0]._source

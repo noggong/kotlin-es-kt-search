@@ -1,7 +1,7 @@
 package com.example.demo.dto
 
 data class LowestPriceESDto (
-    val lowestPrice: LowestPriceAgg,
+    val lowestPrice: LowestPriceAgg<LowestPriceBuckets>,
     val bucketStats: PriceStatsAgg,
 )
 
@@ -9,8 +9,8 @@ data class PriceStatsAgg (
     val sum: Int
 )
 
-data class LowestPriceAgg (
-    val buckets: List<LowestPriceBuckets>
+data class LowestPriceAgg<T> (
+    val buckets: List<T>
 )
 
 data class LowestPriceBuckets (
@@ -39,4 +39,13 @@ data class PriceInfo (
 data class PriceByCategoryESDto (
     val highestPrice: TopHits,
     val lowestPrice: TopHits,
+)
+
+data class LowestPriceByBrandESDto (
+    val pricePerBrand: LowestPriceAgg<CategoryAndStats>,
+)
+
+data class CategoryAndStats (
+    val key: String,
+    val bucketStats: PriceStatsAgg
 )

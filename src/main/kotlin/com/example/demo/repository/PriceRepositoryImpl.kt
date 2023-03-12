@@ -2,6 +2,7 @@ package com.example.demo.repository
 
 import com.example.demo.document.ElasticClient
 import com.example.demo.document.Price
+import com.example.demo.dto.LowestPriceByBrandESDto
 import com.example.demo.dto.LowestPriceESDto
 import com.example.demo.dto.PriceByCategoryESDto
 import com.jillesvangurp.jsondsl.JsonDsl
@@ -56,24 +57,24 @@ class PriceRepositoryImpl: PriceRepository {
         return Gson().fromJson(results.aggregations?.toString()!!, LowestPriceESDto::class.java)
     }
 
-    override fun lowestPriceByBrand() {
+    override fun lowestPriceByBrand(): LowestPriceByBrandESDto {
 
-        val result = runBlocking {
+        val results = runBlocking {
             ElasticClient.client.search(ElasticClient.INDEX_NAME) {
                 resultSize = 0
                 agg("pricePerBrand", TermsAgg(Price::brand)) {
-                    agg("sumOfPrice", SumAgg("price"))
-                }
-                agg("bucketStats", ExtendedStatsBucketAgg() {
-                    bucketsPath = "pricePerBrand>sumOfPrice"
+                    agg("pricePerCategory", TermsAgg(Price::category)) {
+                        agg("minPrice", MinAgg(Price::price)) {
 
-                })
+                        }
+                    }
+                    agg("bucketStats", ExtendedStatsBucketAgg {
+                        bucketsPath = "pricePerCategory>minPrice"
+                    })
+                }
             }
         }
-        println(result.aggregations?.termsResult("pricePerBrand")?.buckets?.map {
-
-        })
-        println(result.aggregations?.get("bucketStats"))
+        return Gson().fromJson(results.aggregations?.toString()!!, LowestPriceByBrandESDto::class.java)
 
     }
 
