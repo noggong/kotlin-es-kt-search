@@ -17,24 +17,6 @@ import kotlin.reflect.KProperty
 @Component
 class PriceRepositoryImpl: PriceRepository {
 
-    class SumAggConfig : JsonDsl() {
-        var field by property<String>()
-    }
-
-    class SumAgg(
-        val field: String,
-        block: (SumAggConfig.() -> Unit)? = null
-    ) : AggQuery("sum") {
-        constructor(field: KProperty<*>, block: (SumAggConfig.() -> Unit)? = null) : this(field.name, block)
-
-        init {
-            val config = SumAggConfig()
-            config.field = field
-            block?.invoke(config)
-            put(name, config)
-        }
-    }
-
     override fun lowestPriceByCategory(): LowestPriceAgg {
         val results = runBlocking {
             ElasticClient.client.search(ElasticClient.INDEX_NAME) {
