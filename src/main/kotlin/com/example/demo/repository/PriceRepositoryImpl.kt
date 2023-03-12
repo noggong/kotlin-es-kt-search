@@ -3,7 +3,7 @@ package com.example.demo.repository
 import com.example.demo.document.ElasticClient
 import com.example.demo.document.Price
 import com.example.demo.document.BrandPriceAgg
-import com.example.demo.document.LowestPriceAgg
+import com.example.demo.document.LowestPriceTerms
 import com.example.demo.document.CategoryPriceAgg
 import com.jillesvangurp.jsondsl.JsonDsl
 import com.jillesvangurp.ktsearch.*
@@ -17,7 +17,7 @@ import kotlin.reflect.KProperty
 @Component
 class PriceRepositoryImpl: PriceRepository {
 
-    override fun lowestPriceByCategory(): LowestPriceAgg {
+    override fun lowestPriceByCategory(): LowestPriceTerms {
         val results = runBlocking {
             ElasticClient.client.search(ElasticClient.INDEX_NAME) {
                 resultSize = 0
@@ -36,7 +36,7 @@ class PriceRepositoryImpl: PriceRepository {
             }
         }
 
-        return Gson().fromJson(results.aggregations?.toString()!!, LowestPriceAgg::class.java)
+        return Gson().fromJson(results.aggregations?.toString()!!, LowestPriceTerms::class.java)
     }
 
     override fun lowestPriceByBrand(): BrandPriceAgg {
