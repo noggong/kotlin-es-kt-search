@@ -1,4 +1,5 @@
-curl -XPUT 127.0.0.1:9200/prices  \
+#!/bin/bash
+curl -XPUT localhost:9200/prices  \
 -d '
 {
   "mappings": {
@@ -10,4 +11,4 @@ curl -XPUT 127.0.0.1:9200/prices  \
   }
 }'
 
-curl -XPUT "127.0.0.1:9200/_bulk?pretty" --data-binary @prices.json
+curl -XPUT localhost:9200/_bulk --data-binary @./docker/prices.json

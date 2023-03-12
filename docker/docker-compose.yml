@@ -1,4 +1,4 @@
-version: "3"
+version: '3.6'
 services:
   es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
@@ -54,6 +54,8 @@ services:
         hard: -1
     volumes:
       - data03:/usr/share/elasticsearch/data
+    networks:
+      - elastic
   kibana:
     image: docker.elastic.co/kibana/kibana:7.16.1
     container_name: kibana
@@ -65,18 +67,7 @@ services:
       - es01
     networks:
       - elastic
-  application:
-    build: .
-    depends_on:
-      - es01
-      - kibana
-    environment:
-      SPRING_PROFILES_ACTIVE: dev
-    ports:
-      - 8080:8080
-    networks:
-      - elastic
-    restart: always
+
 volumes:
   data01:
     driver: local

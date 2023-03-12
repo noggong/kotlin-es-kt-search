@@ -15,7 +15,7 @@ data class Price (
 class ElasticClient() {
     companion object {
         val INDEX_NAME = "prices"
-        val client = SearchClient(KtorRestClient("http://es01", 9200))
+        val client = SearchClient(KtorRestClient("127.0.0.1", 9200))
     }
 }
 
