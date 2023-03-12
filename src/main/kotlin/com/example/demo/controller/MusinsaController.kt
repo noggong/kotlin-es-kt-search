@@ -16,7 +16,7 @@ class MusinsaController(
 ) {
 
     /**
-     * 모든 카테고리의 상품을 브랜드 별로 자유롭게 선택해서 모든 상품을 구매할때 최저가 조회 API
+     * health check
      */
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
