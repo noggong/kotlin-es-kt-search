@@ -66,6 +66,10 @@ curl --location --request DELETE 'localhost:8080/prices/q5PG1IYBmSvLIkfI-W02'
 3. kt-search 를 이용하여 CRUD 및 집계 쿼리를 이용하여 요구 사항을 처리 하였습니다.
 4. build 패턴 혹은 팩토리 패턴을 이용하여 mysql 또한 구현체를 구현하고 싶었으나 시간 부족으로 거기까진 하지 못했습니다. `PriceRepository` interface 만 작성하였습니다.
 
+## 15만개 데이터 (docker/prices_big.json) 테스트
+- 응답 : 1000ms 내외.
+- 데이터의 양에 땨라서, 적재적소에 캐시를 하면 더욱 좋은 성능을 기대.
+
 ### 고난
 #### es client
 1. es client 를 초반에 spring data 구현체로 사용하였으나 aggregation 결과에 접근 하지 못하였습니다.
