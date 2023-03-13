@@ -79,7 +79,7 @@ curl --location --request DELETE 'localhost:8080/prices/q5PG1IYBmSvLIkfI-W02'
 4. 하지만 spring boot 에서 코르틴 dipatcher 메소드를 찾을 수 없었고, spring boot 를 3.x openjdk 를 17 버전으로 업그레이드 했습니다.
 
 #### es bucket-path
-- search api 를 이용하면 bucket 들의 통계가 key 를 포함하여 받을 수 있으나 kt-search 에서는 bucketStats 에 key 없이 min, max, sum 을 받기에 데이터를 받아서 코드로서 최좃값을 도출하였습니다.
+- search api 를 이용하면 bucket 들의 통계가 key 를 포함하여 받을 수 있으나 kt-search 에서는 bucketStats 에 key 없이 min, max, sum 을 받기에 데이터를 받아서 코드로서 최솟값을 도출하였습니다.
 
 ### Issue
 - 이후에 하면 좋겠다고 생각한것은 [Issue](https://github.com/noggong/kotlin-es-kt-search/issues) 등록 되어있습니다.
